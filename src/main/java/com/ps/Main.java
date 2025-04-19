@@ -11,31 +11,35 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.print("Please enter a game score: ");
-        String gameScore = scanner.next();
+        StringBuilder sb = new StringBuilder();
 
-        String[] gameList = gameScore.trim().split("\\|");
+        System.out.println("Welcome To Theater Reservation!");
 
-        String teams = gameList[0];
-        String scores = gameList[1];
+        System.out.print("Please enter your name: ");
+        String fullName = scanner.nextLine().trim();
 
-        String[] gameTeams = teams.split(":");
-        String[] teamScores = scores.split(":");
+        System.out.print("What date will you be coming (MM/dd/yyyy): ");
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+        String inputDate = scanner.nextLine();
 
-        int homeScore = Integer.parseInt(teamScores[0]);
-        int awayScore = Integer.parseInt(teamScores[1]);
+        System.out.print("How many tickets would you like?: ");
+        int ticketCount = Integer.parseInt(scanner.next());
 
-        if (homeScore > awayScore){
-
-            System.out.println("Winner: " + gameTeams[0]);
+        if (ticketCount > 1){
+            sb.append(ticketCount).append(" tickets reserved for ");
+            sb.append(inputDate).append(" under ").append(fullName);
+            System.out.println(sb.toString());
         }
-        else if (homeScore < awayScore) {
+        else if (ticketCount < 0) {
+            System.out.println("Please only enter valid ticket number.");
 
-            System.out.println("Winner: " + gameTeams[1]);
+        } else{
+            sb.append(ticketCount).append(" ticket reserved for ");
+            sb.append(inputDate).append(" under ").append(fullName);
+            System.out.println(sb.toString());
         }
-        else{
-            System.out.println("Draw");;
-        }
+
+
 
     }
 }
